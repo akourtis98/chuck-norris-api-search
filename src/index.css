@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+#container{
+  margin-top:170px;
+  text-align: center;
+}
+tabletr:nth-child(even) {
+  background-color: #eee;
+}
+table tr:nth-child(odd) {
+  background-color: #fff;
+}
+table th {
+  color: white;
+  background-color: black;
+}
