@@ -17,3 +17,7 @@ table th {
   color: white;
   background-color: black;
 }
+table{
+  width:50%; 
+  margin: auto;
+}
