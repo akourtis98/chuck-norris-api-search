@@ -6,14 +6,16 @@ import './App.css';
 // api url
 const api = "https://api.chucknorris.io/jokes/search?query=";
 let resultsTable; // variable which will containt fetched results in html format to be rendered
+let objectData;
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      // initialize properties of obejct
-      values: "",
-      id: ""
+      obejct: {
+        value: "",
+        pic: ""
+      }
     };
   }
 
@@ -21,15 +23,35 @@ class App extends Component {
   trimInput = () => {
     var regex = /[^a-z ]/gi;
     let input = document.getElementById('searchInput').value.replace(regex, "");
-    console.log("user input is: " + input);
 
-    this.fetchres(input); // after user input is trimmed do fetching
-    input = "";
+    this.fetchres(input);
+    
   }
 
   // fetches results of query
-  fetchres = input => {
-    let search = api + input;
+  fetchres = input => {    
+    // check to see if its already cached
+    if (localStorage.getItem(input) === null) {
+      
+      // cache it
+      localStorage.setItem(input, JSON.stringify(this.searchQuery(input))); // store object with the key of it as the query used to find it
+      console.log("what you store: " + this.searchQuery(Object.values(input)));
+    }else{
+
+      // retreive from local storage
+      console.log("LOCALLY");
+      this.getQueryFromLocal(localStorage.getItem(input));
+    }
+  }
+
+  getQueryFromLocal = key => {
+    
+    this.fillTable(JSON.parse(localStorage.getItem(key)));
+  }
+  
+  searchQuery = query => {
+
+    let search = api + query;
     const req = new Request(search, {
       method: 'GET',
       cache: 'default'
@@ -37,17 +59,16 @@ class App extends Component {
 
     fetch(req)
     .then((res) => res.json())
-    .then(data => {
+    .then(objectData => {
 
       // log obj for debugging
-      console.log(Object.values(data));
+      console.log(Object.values(objectData));
 
       // fill html table with results
-      this.fillTable(data);
-
-        }).catch(err =>  {      
-          this.emptyList();
-      })
+      this.fillTable(objectData);
+        }
+      )
+      return Object.values(objectData);
     };
 
   // add data to html table
@@ -72,23 +93,6 @@ class App extends Component {
       console.log("very few");
     }
       resultsTable += document.getElementById('results').innerHTML = output;
-    }
-  
-    populateList  = () => {
-      const list = (
-        <div className="App">
-                <label>Search: </label>
-                <input id="searchInput" placehoder="Search anything" type="text"/>
-                <button type="button" onClick={this.trimInput}>Submit</button>
-                <table id="table">
-                <tr>
-                  <th>Icon</th>
-                  <th>Quote</th> 
-                </tr></table>
-                <div id="results"></div>
-            </div>
-      );
-      ReactDOM.render(list, document.getElementById('root'));
     }
     
     populateList  = () => {
