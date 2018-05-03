@@ -1,11 +1,11 @@
 {
-  "name": "chuck-api",
+  "name": "mynewapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "caching-fetch": "^1.0.8",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.0",
     "react-scripts": "0.9.5"
   },
   "devDependencies": {},
@@ -14,17 +14,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/akourtis98/chuck-norris-api-search.git"
-  },
-  "author": "akourtis98",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/akourtis98/chuck-norris-api-search/issues"
-  },
-  "homepage": "https://github.com/akourtis98/chuck-norris-api-search#readme"
+  }
 }

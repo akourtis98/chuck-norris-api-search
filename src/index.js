@@ -1,9 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
-// variable which holds the endpoint api
-const url = "https://api.chucknorris.io/jokes/search?query=";
+// components 
+import Home from './components/home';
+import Cache from './components/cache';
+import Search from './components/search';
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+const App = () => {
+  return (
+    <BrowserRouter>
+      <div>
+        <header>
+          <Link to="/">Home</Link>
+          <br/>
+          <Link to="/search">Search</Link>
+          <br/>
+          <Link to="/cache">Cache</Link>
+          <hr/>
+        </header>
+        <Route path="/" component={Home} exact/>
+        <Route path="/search" component={Search} exact/>
+        <Route path="/cache" component={Cache} exact/>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

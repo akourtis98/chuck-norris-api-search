@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
+import './style.css';
 
 // api url
 const uri = "https://api.chucknorris.io/jokes/search?query="; // api endpoint
 let data; // variable which holds response.json() object
-class App extends Component {
+
+// components 
+import Home from './home';
+import Cache from './cache';
+
+class Search extends Component {
   constructor(){
     super();
-    this.state = {
-      obejct: {
-        value: "",
-        pic: ""
-      }
-    };
   }
 
   // trims input and allows character and spaces only
@@ -114,9 +112,6 @@ class App extends Component {
     populateList  = () => {
       const resultlist = (
         <div className="App">
-                <label>Search: </label>
-                <input id="searchInput" placehoder="Search anything" type="text"/>
-                <button type="button" onClick={this.trimInput}>Submit</button>
                 <table id="table">
                 <tr>
                   <th>Icon</th>
@@ -125,15 +120,12 @@ class App extends Component {
                 <div id="results"></div>
             </div>
       );
-      ReactDOM.render(resultlist, document.getElementById('root'));
+      ReactDOM.render(resultlist, document.getElementById('table'));
     }
     
     emptyList  = () => {
       const emptylist = (
         <div className="App">
-                <label>Search: </label>
-                <input id="searchInput" placehoder="Search anything" type="text"/>
-                <button type="button" onClick={this.trimInput}>Submit</button>
                 <table id="table">
                 <tbody>
                 <tr>
@@ -145,11 +137,12 @@ class App extends Component {
                 <div>No results for what you searched</div>
             </div>
       );
-      ReactDOM.render(emptylist, document.getElementById('root'));
+      ReactDOM.render(emptylist, document.getElementById('table'));
     }
     
     render() {
       return (
+        
         <div className="App">
                 <label>Search: </label>
                 <input id="searchInput" placehoder="Search anything" type="text"/>
@@ -158,12 +151,14 @@ class App extends Component {
                 <tr>
                   <th>Icon</th>
                   <th>Quote</th> 
-                </tr></table>
+                </tr>
                 <div>Search for something</div>
+                </table>
             </div>
-        
+
       );
     }
 
 }
-export default App;
+
+export default Search;
