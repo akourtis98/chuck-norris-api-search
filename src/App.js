@@ -28,8 +28,15 @@ class App extends Component {
 
   // check if it exists locally or not
   validateStorage = input => {
-    let promise = this.postData(input);
-    console.dir(data);
+    if (localStorage.getItem(input) === null){
+      let promise = this.postData(input);
+      console.dir(data);
+    }
+    else{
+      let obj = JSON.parse(localStorage.getItem(input));
+      console.log(obj);
+      this.createHtmlTable(obj);
+    }
   }
 
   postData = q => {
@@ -54,6 +61,8 @@ class App extends Component {
           }
       })
       .then(  (jsonData) => {
+        // save jsonData and input in local storage
+        localStorage.setItem(q, JSON.stringify(jsonData));
         console.log(jsonData);
         this.createHtmlTable(jsonData);
       })
@@ -72,21 +81,26 @@ class App extends Component {
 
     if (totalJokes >= 1){
 
-      for ( var i = 1; i <= 10; i++){
+      try{
+        for ( var i = 1; i <= 10; i++){
 
-        resultsTabe += 
-          `<table style="width:50%;">
-            <tbody>
-              <tr>
-                <td style="width:20%";><img src=${data.result[i].icon_url}></td>
-                <td style="width:80%";>${data.result[i].value}</td>
-              </tr>
-              </tbody>
-            </table>
-          `
-        }
-        this.populateList();
-    }else{
+          resultsTabe += 
+            `<table style="width:50%;">
+              <tbody>
+                <tr>
+                  <td style="width:20%";><img src=${data.result[i].icon_url}></td>
+                  <td style="width:80%";>${data.result[i].value}</td>
+                </tr>
+                </tbody>
+              </table>
+            `
+          }
+      }catch(err) {
+        document.getElementById("results").innerHTML = err.message;
+      }
+      this.populateList();
+    }
+    else{
       // containerOfTable.innerHTML = "empty";
       // this.populateList();
       }
