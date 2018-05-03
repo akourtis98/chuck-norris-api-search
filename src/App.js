@@ -4,10 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 
 // api url
-const api = "https://api.chucknorris.io/jokes/search?query=";
-let resultsTable; // variable which will containt fetched results in html format to be rendered
-let objectData;
-
+const uri = "https://api.chucknorris.io/jokes/search?query="; // api endpoint
+let data; // variable which holds response.json() object
 class App extends Component {
   constructor(){
     super();
@@ -24,75 +22,79 @@ class App extends Component {
     var regex = /[^a-z ]/gi;
     let input = document.getElementById('searchInput').value.replace(regex, "");
 
-    this.fetchres(input);
-    
+    console.log("to be validated: " + input)
+    this.validateStorage(input);
   }
 
-  // fetches results of query
-  fetchres = input => {    
-    // check to see if its already cached
-    if (localStorage.getItem(input) === null) {
-      
-      // cache it
-      localStorage.setItem(input, JSON.stringify(this.searchQuery(input))); // store object with the key of it as the query used to find it
-      console.log("what you store: " + this.searchQuery(Object.values(input)));
-    }else{
-
-      // retreive from local storage
-      console.log("LOCALLY");
-      this.getQueryFromLocal(localStorage.getItem(input));
-    }
+  // check if it exists locally or not
+  validateStorage = input => {
+    let promise = this.postData(input);
+    console.dir(data);
   }
 
-  getQueryFromLocal = key => {
-    
-    this.fillTable(JSON.parse(localStorage.getItem(key)));
-  }
-  
-  searchQuery = query => {
+  postData = q => {
 
-    let search = api + query;
-    const req = new Request(search, {
-      method: 'GET',
-      cache: 'default'
+    let query = uri + q;
+    let h = new Headers();
+    h.append('Accept', 'application/json');
+
+    let req = new Request(query, {
+      method: 'GET', 
+      headers: h,
+      mode: 'cors'
     });
 
     fetch(req)
-    .then((res) => res.json())
-    .then(objectData => {
-
-      // log obj for debugging
-      console.log(Object.values(objectData));
-
-      // fill html table with results
-      this.fillTable(objectData);
-        }
-      )
-      return Object.values(objectData);
-    };
+      .then(  (response) => {
+          if (response.ok){
+            return response.json();
+          }else{
+            // catch respose statuses later
+            throw new Error("bad HTTP");
+          }
+      })
+      .then(  (jsonData) => {
+        console.log(jsonData);
+        this.createHtmlTable(jsonData);
+      })
+      .catch( (err) => {
+        this.emptyList();
+        console.log('ERROR' , err.message);
+      });
+  }
 
   // add data to html table
-  fillTable = (data) => {
-    let output = "";
+  createHtmlTable = (data) => {
+    let containerOfTable = document.getElementById('table');
+    let resultsTabe = "";
     // loop through it
     var totalJokes = Object.keys(data.result).length;
+
     if (totalJokes >= 1){
+
       for ( var i = 1; i <= 10; i++){
-          output += 
+
+        resultsTabe += 
           `<table style="width:50%;">
-            <tr>
-              <td style="width:20%";><img src=${data.result[i].icon_url}></td>
-              <td style="width:80%";>${data.result[i].value}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td style="width:20%";><img src=${data.result[i].icon_url}></td>
+                <td style="width:80%";>${data.result[i].value}</td>
+              </tr>
+              </tbody>
             </table>
           `
         }
         this.populateList();
     }else{
-      this.emptyList();
-      console.log("very few");
+      // containerOfTable.innerHTML = "empty";
+      // this.populateList();
+      }
+      document.getElementById('results').innerHTML = resultsTabe;
     }
-      resultsTable += document.getElementById('results').innerHTML = output;
+    
+    renderList = (list) => {
+      ReactDOM.render(list, document.getElementById('root'));
     }
     
     populateList  = () => {
@@ -119,10 +121,13 @@ class App extends Component {
                 <input id="searchInput" placehoder="Search anything" type="text"/>
                 <button type="button" onClick={this.trimInput}>Submit</button>
                 <table id="table">
+                <tbody>
                 <tr>
                   <th>Icon</th>
                   <th>Quote</th> 
-                </tr></table>
+                </tr>
+                </tbody>
+                </table>
                 <div>No results for what you searched</div>
             </div>
       );
@@ -145,5 +150,6 @@ class App extends Component {
         
       );
     }
+
 }
 export default App;
