@@ -6,25 +6,16 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Home from './components/home';
 import Cache from './components/cache';
 import Search from './components/search';
+import Header from './components/header';
+import Footer from './components/footer';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <header>
-          <Link to="/">Home</Link>
-          <br/>
-          <Link to="/search">Search</Link>
-          <br/>
-          <Link to="/cache">Cache</Link>
-          <hr/>
-        </header>
-        <Route path="/" component={Home} exact/>
-        <Route path="/search" component={Search} exact/>
-        <Route path="/cache" component={Cache} exact/>
-      </div>
-    </BrowserRouter>
-  );
+    <div>
+      <Header/>
+      <Footer/>
+    </div>
+  )
 }
 
 ReactDOM.render(

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Header from './header';
 import './style.css';
 
 // api url
@@ -10,7 +11,7 @@ let data; // variable which holds response.json() object
 import Home from './home';
 import Cache from './cache';
 
-class Search extends Component {
+class Search extends React.Component {
   constructor(){
     super();
   }
@@ -136,14 +137,14 @@ class Search extends Component {
                 </table>
                 <div>No results for what you searched</div>
             </div>
-      );
+      )
       ReactDOM.render(emptylist, document.getElementById('table'));
     }
     
     render() {
       return (
-        
         <div className="App">
+                
                 <label>Search: </label>
                 <input id="searchInput" placehoder="Search anything" type="text"/>
                 <button type="button" onClick={this.trimInput}>Submit</button>
@@ -156,7 +157,7 @@ class Search extends Component {
                 </table>
             </div>
 
-      );
+      )
     }
 
 }

@@ -41,3 +41,9 @@
     width:50%; 
     margin: auto;
   }
+
+  #footer{
+    width: 100%; 
+    background-color: black;
+    color: white;
+  }
