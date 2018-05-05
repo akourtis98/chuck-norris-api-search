@@ -3,23 +3,27 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import { connect } from "react-redux"
-
+import { fetchUser } from "../actions/userActions"
 // components 
 import Home from './home'
 import Cache from './cache'
 import Search from './search'
 
-@connect((store) => {
-    return {
-        foo: 1
-    };
-})
 
-export default class Header extends React.Component {
+class Header extends React.Component {
+
     render() {
-        return null;
+        console.log(this.props)
+        return <div>{this.props}</div>
     }
 }
+
+function mapStateToProps(state) {
+    return { user: state.user.name }
+}
+
+export default connect(mapStateToProps)(Header);
+
 
 /* <BrowserRouter>
 <div>
