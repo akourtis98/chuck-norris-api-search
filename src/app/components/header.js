@@ -10,33 +10,23 @@ import Cache from './cache'
 import Search from './search'
 
 
-class Header extends React.Component {
-
-    render() {
-        console.log(this.props)
-        return <div>{this.props}</div>
+export default class Header extends React.Component {
+    render () {
+    return ( <BrowserRouter>
+        <div>
+        <header>
+            <Link to="/">Home</Link>
+            <br/>
+            <Link to="/search">Search</Link>
+            <br/>
+            <Link to="/cache">Cache</Link>
+            <hr/>
+        </header>
+        <Route path="/" component={Home} exact/>
+        <Route path="/search" component={Search} exact/>
+        <Route path="/cache" component={Cache} exact/>
+        </div>
+        </BrowserRouter>)
     }
 }
 
-function mapStateToProps(state) {
-    return { user: state.user.name }
-}
-
-export default connect(mapStateToProps)(Header);
-
-
-/* <BrowserRouter>
-<div>
-<header>
-    <Link to="/">Home</Link>
-    <br/>
-    <Link to="/search">Search</Link>
-    <br/>
-    <Link to="/cache">Cache</Link>
-    <hr/>
-</header>
-<Route path="/" component={Home} exact/>
-<Route path="/search" component={Search} exact/>
-<Route path="/cache" component={Cache} exact/>
-</div>
-</BrowserRouter>) */
