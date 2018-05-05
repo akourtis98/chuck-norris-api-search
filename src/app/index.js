@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
+import { Provider } from "react-redux"
+import store from "./store"
+
 // components 
 import Home from './components/home';
 import Cache from './components/cache';
@@ -19,6 +22,8 @@ const App = () => {
 }
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}> 
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
