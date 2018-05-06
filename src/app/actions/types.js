@@ -1,0 +1,1 @@
+export const FETCH_JOKES = 'fetch_jokes';
