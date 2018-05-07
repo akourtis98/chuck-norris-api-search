@@ -6,11 +6,9 @@ import axios from 'axios'
 import PropTypes from "prop-types"
 import { fetchJokes } from '../actions/searchActions';
 import { connect } from "react-redux"
+import renderHTML from 'react-render-html';
 
 class Search extends React.Component {
-  componentWillMount() {
-    this.props.fetchJokes();
-  }
 
   trimInput = () => {
     var regex = /[^a-z ]/gi;
@@ -18,22 +16,17 @@ class Search extends React.Component {
 
     if (input != ""){
       if(this.notCached(input)){
-        this.addToCache(input)
-        console.log("state:" + this.state.jokes)
-        // this.renderListFromCache(this.state.jokes)
+        this.props.fetchJokes(input, true);
       }else{
-        //this.renderListFromCache(JSON.parse(localStorage.getItem(input)))
-        console.log("already")
-        console.log(JSON.parse(localStorage.getItem(input)))
+        // //this.renderListFromCache(JSON.parse(localStorage.getItem(input)))
+        // console.log("already")
+        // console.log(JSON.parse(localStorage.getItem(input)))
         
       }
     }else{
+      this.props.fetchJokes(input, false);
       console.log("enter proper values")
     }  
-  }
-
-  addToCache = (input) => {
-    console.log("to be cached: " + input)
   }
 
   notCached = (input) => {
@@ -43,25 +36,31 @@ class Search extends React.Component {
   }
 
   render() {
-    const jokes = this.props.jokes.map( joke => (
-      <div key={joke.id}>
-        <h3>{joke.value}</h3>
-      </div>
-    ));
+      let jokes;
+      if (typeof this.props.jokes !== 'undefined' && this.props.jokes.length > 0){
+        jokes = (
+          this.props.jokes.map( joke => (
+            <div key={joke.id}>
+              <h3>{joke.value}</h3>
+            </div>
+        )
+      ))}else{
+            jokes = (
+              <div>
+                  <h3>empty</h3>
+              </div>
+            )
+      }
+    
     return (
       <div>
         <input id="input" type="text" ref={input => this._name = input} placeholder="Search something.." />
-        <input type="submit" value="Submit" onClick={this.trimInput} />
+        <input type="submit" value="Submit" onClick={this.trimInput}/>
         { jokes }
       </div>
     )
   }
 }
-
-// Search.propTypes = {
-//   fetchJokes: PropTypes.func.isRequired,
-//   jokes: PropTypes.array.isRequired
-// }
 
 const mapStateToProps = state => ({
   jokes: state.jokes.jokes

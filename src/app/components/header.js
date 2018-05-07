@@ -8,7 +8,7 @@ import { connect } from "react-redux"
 import Home from './home'
 import Cache from './cache'
 import Search from './search'
-import SearchEmpty from "./searchempty";
+import searchEmpty from "./searchempty";
 
 
 export default class Header extends React.Component {

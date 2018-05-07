@@ -1,1 +1,3 @@
 export const FETCH_JOKES = 'FETCH_JOKES';
+export const FETCH_JOKES_FAIL = 'FETCH_JOKES';
+export const FETCH_JOKES_REJECT = 'FETCH_JOKES';
