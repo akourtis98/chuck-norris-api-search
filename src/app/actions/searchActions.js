@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import axios from 'axios'
 import { FETCH_JOKES } from './types'
 
-export function fetchJokes(e) {
-    return axios.get('https://api.chucknorris.io/jokes/search?query=' + e);
+export const fetchJokes = e => dispatch => {
+        fetch('https://api.chucknorris.io/jokes/search?query=man')
+        .then(res => res.json())
+        .then(jokes =>
+            dispatch({
+            type: FETCH_JOKES,
+            payload: jokes.result
+        }))
 }

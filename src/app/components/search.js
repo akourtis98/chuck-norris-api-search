@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom'
 import Header from './header'
 import './style.css'
 import axios from 'axios'
+import PropTypes from "prop-types"
 import { fetchJokes } from '../actions/searchActions';
+import { connect } from "react-redux"
 
-export default class Search extends React.Component {
-
-  state = {
-    results: []
+class Search extends React.Component {
+  componentWillMount() {
+    this.props.fetchJokes();
   }
 
   trimInput = () => {
@@ -18,11 +19,13 @@ export default class Search extends React.Component {
     if (input != ""){
       if(this.notCached(input)){
         this.addToCache(input)
+        console.log("state:" + this.state.jokes)
+        // this.renderListFromCache(this.state.jokes)
       }else{
-        this.renderListFromCache(JSON.parse(localStorage.getItem(input)))
+        //this.renderListFromCache(JSON.parse(localStorage.getItem(input)))
         console.log("already")
         console.log(JSON.parse(localStorage.getItem(input)))
-        //this.renderListFromCache()
+        
       }
     }else{
       console.log("enter proper values")
@@ -31,7 +34,6 @@ export default class Search extends React.Component {
 
   addToCache = (input) => {
     console.log("to be cached: " + input)
-    this.componentDidMount(input)
   }
 
   notCached = (input) => {
@@ -40,38 +42,30 @@ export default class Search extends React.Component {
     }
   }
 
-  componentDidMount(e) {
-    fetchJokes(e)
-      .then(res => {
-        console.log(res.data)
-        this.setState({ results: res.data.result })
-        localStorage.setItem(e, JSON.stringify(res.data));
-      })
-      .catch(error => { console.log("something mustve went wrong") }
-      )
-  }
-
-  renderListFromCache = obj => {
-    this.setState({ results: obj.result })
-    return (
-      <ul> {obj.map(result => (
-        <li key={result.id}>{result.value}</li>
-      ))}
-      </ul>
-    )
-  }
-
   render() {
+    const jokes = this.props.jokes.map( joke => (
+      <div key={joke.id}>
+        <h3>{joke.value}</h3>
+      </div>
+    ));
     return (
       <div>
         <input id="input" type="text" ref={input => this._name = input} placeholder="Search something.." />
         <input type="submit" value="Submit" onClick={this.trimInput} />
+        { jokes }
       </div>
     )
   }
 }
 
-{/* <ul> {this.state.results.map(result => (
-          <li key={result.id}>{result.value}</li>
-        ))}
-        </ul> */}
+// Search.propTypes = {
+//   fetchJokes: PropTypes.func.isRequired,
+//   jokes: PropTypes.array.isRequired
+// }
+
+const mapStateToProps = state => ({
+  jokes: state.jokes.jokes
+});
+
+
+export default connect(mapStateToProps, { fetchJokes })(Search);

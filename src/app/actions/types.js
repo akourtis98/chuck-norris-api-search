@@ -1,1 +1,1 @@
-export const FETCH_JOKES = 'fetch_jokes';
+export const FETCH_JOKES = 'FETCH_JOKES';

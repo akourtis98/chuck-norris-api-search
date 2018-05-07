@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import { connect } from "react-redux"
-import { fetchUser } from "../actions/userActions"
+
 // components 
 import Home from './home'
 import Cache from './cache'
 import Search from './search'
+import SearchEmpty from "./searchempty";
 
 
 export default class Header extends React.Component {

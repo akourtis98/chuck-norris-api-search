@@ -8,9 +8,9 @@ import store from "./store"
 // components 
 import Home from './components/home';
 import Cache from './components/cache';
-import Search from './components/search';
 import Header from './components/header';
 import Footer from './components/footer';
+import Search from "./components/search";
 
 const App = () => {
   return (
