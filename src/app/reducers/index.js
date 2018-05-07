@@ -1,6 +1,10 @@
 import { combineReducers } from "redux"
 import searchReducer from "./searchReducer"
+import cachedReducer from "./cachedReducer"
 
-export default combineReducers({
-    jokes: searchReducer
-})
+const comboReducers = combineReducers({
+    jokes: searchReducer,
+    cachedJokes: cachedReducer
+});
+
+export default comboReducers;
