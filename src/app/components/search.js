@@ -21,14 +21,18 @@ class Search extends React.Component {
         // //this.renderListFromCache(JSON.parse(localStorage.getItem(input)))
         // console.log("already")
         // console.log(JSON.parse(localStorage.getItem(input)))
-        
+        console.log("this is cached: " + input);
+        this.props.fetchJokes(input, true);
       }
     }else{
-      this.props.fetchJokes(input, false);
       console.log("enter proper values")
-    }  
+    }
   }
 
+  // componentWillUpdate(nextProps) {
+  //     localStorage.setItem('test', JSON.stringify(nextProps));
+  // }
+  
   notCached = (input) => {
     if (localStorage.getItem(input) === null){
       return true
