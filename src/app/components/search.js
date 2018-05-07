@@ -26,6 +26,7 @@ class Search extends React.Component {
       }
     }else{
       console.log("enter proper values")
+      this.props.fetchJokes(input, false);
     }
   }
 
@@ -44,7 +45,7 @@ class Search extends React.Component {
       if (typeof this.props.jokes !== 'undefined' && this.props.jokes.length > 0){
         jokes = (
           this.props.jokes.map( joke => (
-            <div key={joke.id}>
+            <div key={joke.value}>
               <h3>{joke.value}</h3>
             </div>
         )

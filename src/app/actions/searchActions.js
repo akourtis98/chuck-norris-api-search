@@ -5,6 +5,7 @@ import axios from 'axios'
 import store from "./../store"
 
 export const fetchJokes = (input, accept) => dispatch => {
+    console.log("am here");
     if (accept) {
             if (localStorage.getItem(input) === null) {
 
@@ -29,6 +30,7 @@ export const fetchJokes = (input, accept) => dispatch => {
             console.log(localStorage.getItem(input))
             dispatch({type: FETCH_JOKES, 
             payload: JSON.parse(localStorage.getItem(input))});
+            console.log(localStorage.getItem(input))
         }
     }
     else{
