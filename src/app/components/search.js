@@ -18,9 +18,6 @@ class Search extends React.Component {
       if(this.notCached(input)){
         this.props.fetchJokes(input, true);
       }else{
-        // //this.renderListFromCache(JSON.parse(localStorage.getItem(input)))
-        // console.log("already")
-        // console.log(JSON.parse(localStorage.getItem(input)))
         console.log("this is cached: " + input);
         this.props.fetchJokes(input, true);
       }
@@ -29,10 +26,6 @@ class Search extends React.Component {
       this.props.fetchJokes(input, false);
     }
   }
-
-  // componentWillUpdate(nextProps) {
-  //     localStorage.setItem('test', JSON.stringify(nextProps));
-  // }
   
   notCached = (input) => {
     if (localStorage.getItem(input) === null){
@@ -41,6 +34,7 @@ class Search extends React.Component {
   }
 
   render() {
+ 
       let jokes;
       if (typeof this.props.jokes !== 'undefined' && this.props.jokes.length > 0){
         jokes = (
@@ -56,7 +50,6 @@ class Search extends React.Component {
               </div>
             )
       }
-    
     return (
       <div>
         <input id="input" type="text" ref={input => this._name = input} placeholder="Search something.." />
