@@ -11,10 +11,6 @@ export default class Cache extends React.Component {
     }
 
     render() {
-        // refresh
-        // this.forceUpdate();
-
-        // load it and to var
         let arrayOfInputs = [];
 
         for (var i = 0, len = localStorage.length; i < len; ++i) {
@@ -32,7 +28,6 @@ export default class Cache extends React.Component {
                     <h3>{joke.value}</h3>
                 </div>
             )))
-        // map it and load it
         return (
             <div>
                 <h1> { arrayOfInputs } </h1>
@@ -40,10 +35,3 @@ export default class Cache extends React.Component {
         )
     }
 }
-
-// arrayOfInputs = (
-//     arrayOfInputs.map( => joke => (
-//     <div key={joke}>
-//         <h3>{joke}</h3>
-//     </div>
-// ))

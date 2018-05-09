@@ -1,4 +1,6 @@
-import { FETCH_JOKES } from "../actions/types";
+import { GET_JOKES } from "../actions/types";
+import { GET_JOKES_FAIL } from "../actions/types";
+import { GET_JOKES_PENDING } from "../actions/types";
 
 const initialState = {
     jokes: []
@@ -6,7 +8,17 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case FETCH_JOKES:
+        case GET_JOKES:
+            return {
+                ...state,
+                jokes: action.payload
+            }
+        case GET_JOKES_FAIL:
+            return {
+                ...state,
+                jokes: action.payload
+            }
+        case GET_JOKES_PENDING:
             return {
                 ...state,
                 jokes: action.payload
@@ -15,3 +27,5 @@ export default function(state = initialState, action) {
             return state;
     }
 }
+
+

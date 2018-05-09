@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Header from './header'
 import './style.css'
-import axios from 'axios'
 import PropTypes from "prop-types"
-import { fetchJokes } from '../actions/searchActions';
+import { searchJokes } from '../actions/searchActions';
 import { connect } from "react-redux"
 import renderHTML from 'react-render-html';
 
@@ -15,26 +14,10 @@ class Search extends React.Component {
     let input = this._name.value.replace(regex, "");
 
     if (input != ""){
-      if(this.notCached(input)){
-        this.props.fetchJokes(input, true);
-      }else{
-        console.log("this is cached: " + input);
-        this.props.fetchJokes(input, true);
+        this.props.searchJokes(input)
       }
-    }else{
-      console.log("enter proper values")
-      this.props.fetchJokes(input, false);
     }
-  }
-  
-  notCached = (input) => {
-    if (localStorage.getItem(input) === null){
-      return true
-    }
-  }
-
   render() {
- 
       let jokes;
       if (typeof this.props.jokes !== 'undefined' && this.props.jokes.length > 0){
         jokes = (
@@ -46,7 +29,7 @@ class Search extends React.Component {
       ))}else{
             jokes = (
               <div>
-                  <h3>empty</h3>
+                  <h3>Either there are no results for what you searched for or havent queried anything yet.</h3>
               </div>
             )
       }
@@ -65,4 +48,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, { fetchJokes })(Search);
+export default connect(mapStateToProps, { searchJokes })(Search);
