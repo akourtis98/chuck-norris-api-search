@@ -51,6 +51,7 @@ class Search extends React.Component {
           </tr>
         </table>
         <table>
+        <hr/>
         {jokes}
         </table>
         <Footer />
