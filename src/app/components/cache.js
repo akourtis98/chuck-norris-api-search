@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from "react-redux"
+import Footer from './footer';
 
 export default class Cache extends React.Component {
 
     deleteFromCache = key => {
         localStorage.removeItem(key);
-        console.log("this got removed :" + key)
         this.forceUpdate();
     }
 
@@ -31,6 +31,7 @@ export default class Cache extends React.Component {
         return (
             <div>
                 <h1> { arrayOfInputs } </h1>
+                <Footer />
             </div>
         )
     }

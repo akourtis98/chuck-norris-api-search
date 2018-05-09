@@ -4,12 +4,9 @@ import ReactDOM from 'react-dom';
 class Footer extends React.Component {
     render() {
         return (
-            <div id="footer">
-                <p> i am the footer</p>
-                <br/>
-            </div>
-            )
-        }
-    }  
+            <div id="footer"><p>created by me</p></div>
+        )
+    }
+}
 
 export default Footer;

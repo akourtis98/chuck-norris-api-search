@@ -33,7 +33,7 @@ const getCached = (input) => {
 const giveErrorMessage = () => {
     store.dispatch({
         type: GET_JOKES_FAIL,
-        payload: [{ id: 0, value: "Something must have went wrong.\n (Your query will not be cached)" }]
+        payload: [{ id: 0, value: "And then Chuck Norris said 'something must have went wrong'.\n (He will let your query go uncached)" }]
     });
 }
 
@@ -48,7 +48,7 @@ const checkStatus = res => {
 const loadingScreen = () => {
     store.dispatch({
         type: GET_JOKES_PENDING,
-        payload: [{ id: 0, value: "Loading..." }]
+        payload: [{ id: 0, value: "Loading... \n in the meanwhile prepare for his coming." }]
     });
 }
 
@@ -66,13 +66,12 @@ export const searchJokes = input => dispatch => {
                 })
             })
             .catch(err => {
-                //console.log(err);
                 giveErrorMessage();
             })
     }
     else if (exists(input)) {
-        localStorage.setItem(key + i++, input); // for storing queries
-
+        localStorage.setItem(key + i++, input);
+        
         getCached(input)
     }
     else {

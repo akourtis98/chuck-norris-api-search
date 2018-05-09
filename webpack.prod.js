@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-          
+
 module.exports = {
 
     entry: {
@@ -34,7 +34,7 @@ module.exports = {
             {
                 test: /\.(eot|woff|woff2|ttf|svg|ico|png|jpe?g|gif)$/,
                 use: ['file-loader?name=[name].[ext]&outputPath=app/assets/images/',
-                      'image-webpack-loader']
+                    'image-webpack-loader']
             },
         ]
     },
