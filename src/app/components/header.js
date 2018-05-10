@@ -14,6 +14,7 @@ export default class Header extends React.Component {
         return (<BrowserRouter>
         
             <div id="headerDiv">
+                <div id="headings">
                     <li>
                         <a><Link to="/">Home</Link>
                         </a>
@@ -25,6 +26,7 @@ export default class Header extends React.Component {
                     <li>
                         <a><Link to="/cache">Cache</Link></a>
                     </li>
+                </div>
                 <Route path="/" component={Home} exact />
                 <Route path="/search" component={Search} exact />
                 <Route path="/cache" component={Cache} exact />

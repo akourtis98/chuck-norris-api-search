@@ -43,6 +43,7 @@ export default class Cache extends React.Component {
                     </tr>
 
                 </table>
+                <hr/>
                 <table>
                     {arrayOfInputs}
                 </table>

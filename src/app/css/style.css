@@ -1,7 +1,6 @@
 #bg {
-    border: px solid black;
     width: 1200px;
-    height: 520px;
+    height: 470px;
     margin: auto;
     background-image: url('../images/maxresdefault.jpg');
     background-size: 100% 100%;
@@ -10,20 +9,26 @@
 #root{
     border: px solid black;
     width: 1200px;
-
     margin: auto;
 }
-#headerDiv a{
-    width: 1200px;
+
+#headings {
+    background-color: whitesmoke;
     height: 50px;
+}
+
+#headerDiv {
+    width: 1200px;
+}
+
+#headings a{
+    font-size: 24px;
+    position: relative;
+    top: 2.5px;
     color: black;
     -webkit-transition: 0.2s ease;
     transition: 0.2s ease;
     text-decoration: none;
-}
-
-#headerDiv a:hover {
-    color: gainsboro;
 }
 
 li {
@@ -59,64 +64,31 @@ body {
     border: px solid blue;
 }
 
-#homeContainer_infoAboutApp {
-    width: inherit;
-    position: relative;
-    margin: auto;
-    padding-left: 100px;
-    
-    height: 300px;
-    border: px solid purple;
-}
-
 #homeContainer {
     width: inherit;
     position: relative;
     margin: auto;
-    
+    padding-top: 20px;
     height: 300px;
-    border: px solid purple;
 }
 
 #floated{
     float: left;
     width: 300px;
-    display: block;
+    margin-top: -20px;
+    display: inline-block;
     height: inherit;
-    position: relative;
-    background-image: url('../images/chucknorris-MIA2.jpg');
-    left: -100px;
-    background-size: 100% 100%;
-}
-
-#floated2 {
-    float: right;
-    width: 300px;
-    display: block;
-    height: inherit;
-    margin-left: 50px;
     position: relative;
     background-image: url('../images/1756249276de26b8f9ba529c75a13090--chuck-norris-facts-chuck-norris-funny.jpg');
-    right: 00px;
+    left: 70px;
     background-size: 100% 100%;
 }
 
-#homeContainer i{
-    position: relative;
-    top: 10px;
-    margin: 100px;
+#homeText {
+    border: px solid black;
+    width: 700px;
     letter-spacing: 0.5px;
-    width: 400px;
-    height: inherit;
-    font-size: 20px;
-}
-
-#homeContainer_infoAboutApp i{
-    position: relative;
-    top: 10px;
-    margin: 100px;
-    letter-spacing: 0.5px;
-    width: 100px;
+    display: inline-block;
     height: inherit;
     font-size: 20px;
 }
@@ -175,15 +147,24 @@ th:nth-child(1) {padding-left: 10% ; }
 th:nth-child(2) {padding-right: 20% ;}
 td:nth-child(1) {padding-left: 10% ;width: 180px;}
 td:nth-child(2) {padding-left: 10% ;}
-
-
 tr:nth-child(odd) {background-color: #f2f2f2;}
 
 #footer {
-    background-color: #f2f2f2;
+    background-color: whitesmoke;
     width: 1200px;
-    height: 100px;
-    margin: 100px auto;
+    height: 70px;
+    margin-top: 100px;
     text-align: center;
     color: black;
+}
+
+#footer a{
+    color: black;
+    text-decoration: none;
+}
+
+/* for responsiveness */
+
+@media only screen and (max-width:960px){
+
 }
