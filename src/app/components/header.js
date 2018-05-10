@@ -11,8 +11,7 @@ import Search from './search';
 
 export default class Header extends React.Component {
     render() {
-        return (<BrowserRouter>
-        
+        return (<BrowserRouter>  
             <div id="headerDiv">
                 <div id="headings">
                     <li>

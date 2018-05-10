@@ -6,7 +6,7 @@
     background-size: 100% 100%;
 }
 
-#root{
+#root {
     border: px solid black;
     width: 1200px;
     margin: auto;
@@ -21,7 +21,7 @@
     width: 1200px;
 }
 
-#headings a{
+#headings a {
     font-size: 24px;
     position: relative;
     top: 2.5px;
@@ -48,14 +48,6 @@ body {
 }
 
 #container {
-    border: px solid red;
-    width: inherit;
-    height: 500px;
-    margin: auto;
-    text-align: center;
-}
-
-#containerOfSearch {
     text-align: center;
     width: inherit;
     position: relative;
@@ -72,7 +64,7 @@ body {
     height: 300px;
 }
 
-#floated{
+#floated {
     float: left;
     width: 300px;
     margin-top: -20px;
@@ -98,17 +90,18 @@ table {
     width: 100%;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: left;
 }
 
-#containerOfSearch h3 {
+h3 {
     position: relative;
     left: -100px;
 }
 
-#deleteBtn:hover{
+#deleteBtn:hover {
     background-color: red;
 }
 
@@ -131,6 +124,7 @@ input[type=text] {
     border-radius: 2px;
     box-sizing: border-box;
 }
+
 input[type=submit] {
     width: 150px;
     padding: 10px 15px;
@@ -143,28 +137,49 @@ input[type=submit] {
     box-sizing: border-box;
 }
 
-th:nth-child(1) {padding-left: 10% ; }
-th:nth-child(2) {padding-right: 20% ;}
-td:nth-child(1) {padding-left: 10% ;width: 180px;}
-td:nth-child(2) {padding-left: 10% ;}
-tr:nth-child(odd) {background-color: #f2f2f2;}
+th:nth-child(1) {
+    padding-left: 10%;
+}
+
+th:nth-child(2) {
+    padding-right: 20%;
+}
+
+td:nth-child(1) {
+    padding-left: 10%;
+    width: 180px;
+}
+
+td:nth-child(2) {
+    padding-left: 10%;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
 
 #footer {
     background-color: whitesmoke;
     width: 1200px;
-    height: 70px;
+    height: 65px;
     margin-top: 100px;
     text-align: center;
     color: black;
 }
 
-#footer a{
+#footer a {
     color: black;
     text-decoration: none;
 }
 
-/* for responsiveness */
-
-@media only screen and (max-width:960px){
-
+@media screen and (max-width: 959px) {
+    #container {
+        width: 100%;
+    }
+    #footer {
+        width: 100%;
+    }
+    #headerDiv {
+        width: 100%;
+    }
 }

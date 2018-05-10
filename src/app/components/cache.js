@@ -34,7 +34,7 @@ export default class Cache extends React.Component {
             )))
 
         return (
-            <div id="containerOfSearch">
+            <div id="container">
 
                 <table>
                     <tr>

@@ -11,6 +11,7 @@ let table;
 
 class Search extends React.Component {
 
+  // trim imput and allow only letters and spaces
   trimInput = () => {
     var regex = /[^a-z ]/gi;
     let input = this._name.value.replace(regex, "");
@@ -21,8 +22,8 @@ class Search extends React.Component {
   }
 
   render() {
+    // if there are jokes
     if (typeof this.props.jokes !== 'undefined' && this.props.jokes.length > 0) {
-
       jokes = (
         this.props.jokes.map(joke => (
           <tr>
@@ -33,7 +34,7 @@ class Search extends React.Component {
           )
         ))
         
-    } else {
+    } else { // if there aren't any jokes
       jokes = (
         <div>
           And then Chuck said 'Either there are no results for what you searched or havent queried anything yet.'
@@ -41,7 +42,7 @@ class Search extends React.Component {
       )
     }
     return (
-      <div id="containerOfSearch">
+      <div id="container">
         <input id="input" type="text" ref={input => this._name = input} placeholder="Search something.." />
         <input type="submit" value="Search" onClick={this.trimInput} />
         <table>

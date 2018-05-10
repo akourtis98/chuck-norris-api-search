@@ -7,15 +7,15 @@ let i = 0;
 let key = "";
 let obj = "";
 
+// add it to localstorage
 const addToStorage = (input, obj, key) => {
-
     localStorage.setItem(input, obj); // for returning results from cache quicker instead for fetching again
 
     localStorage.setItem(key + i++, input); // for storing queries
 }
 
+// check if user has already searched the same query
 const exists = input => {
-
     if (localStorage.getItem(input) === null) {
         return false
     } else {
@@ -23,6 +23,7 @@ const exists = input => {
     }
 }
 
+// get the jokes from localstorage
 const getCached = (input) => {
     store.dispatch({
         type: GET_JOKES,
@@ -30,6 +31,7 @@ const getCached = (input) => {
     });
 }
 
+// display error messafe on screen
 const giveErrorMessage = () => {
     store.dispatch({
         type: GET_JOKES_FAIL,
@@ -37,6 +39,7 @@ const giveErrorMessage = () => {
     });
 }
 
+// check it there are http errors
 const checkStatus = res => {
     if (!res.ok) {
         throw new Error(res.statusText);
@@ -45,6 +48,7 @@ const checkStatus = res => {
     }
 }
 
+// display loading message
 const loadingScreen = () => {
     store.dispatch({
         type: GET_JOKES_PENDING,

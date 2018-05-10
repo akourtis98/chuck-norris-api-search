@@ -4,7 +4,7 @@ import Footer from './footer';
 const Home = () => {
     return (
         <div>
-            <div id="containerOfSearch">
+            <div id="container">
                 <div id="homeContainer">
                     <div id="floated"></div>
                     <div id="homeText">
